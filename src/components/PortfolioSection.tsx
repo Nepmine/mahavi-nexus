@@ -6,6 +6,12 @@ import design2 from "@/assets/portfolio/design-2.jpg";
 import design3 from "@/assets/portfolio/design-3.jpg";
 import designVideo1 from "@/assets/portfolio/design-video-1.mp4";
 import designVideo2 from "@/assets/portfolio/design-video-2.mp4";
+import websiteKristina from "@/assets/portfolio/website-kristina.png";
+import websiteIds from "@/assets/portfolio/website-ids.png";
+import websiteToTheLeft from "@/assets/portfolio/website-totheleft.png";
+import websiteManual from "@/assets/portfolio/website-manual.png";
+import projectFacebookBot from "@/assets/portfolio/project-facebook-bot.jpg";
+import projectPdpNepal from "@/assets/portfolio/project-pdp-nepal.jpg";
 
 const WHATSAPP_NUMBER = "9779866140033";
 const WHATSAPP_MSG = encodeURIComponent("Hi, I want to know more about MaHaVi.");
@@ -23,11 +29,13 @@ interface WebsiteItem {
   title: string;
   url: string;
   description: string;
+  thumbnail: string;
 }
 
 interface ProjectItem {
   title: string;
   description: string;
+  image: string;
 }
 
 const designItems: DesignItem[] = [
@@ -39,15 +47,15 @@ const designItems: DesignItem[] = [
 ];
 
 const websiteItems: WebsiteItem[] = [
-  { title: "Kristina Champion", url: "https://kristinachampion.com/", description: "Personal portfolio & brand presence" },
-  { title: "IDS Nepal Weekly", url: "https://www.idsnepal.com/weeklyArticle", description: "News & article publishing platform" },
-  { title: "Creative Landing", url: "https://super-cranachan-fa4ff0.netlify.app/", description: "Modern landing page experience" },
-  { title: "Manual.is", url: "https://www.manual.is/", description: "Health & wellness platform" },
+  { title: "Kristina Champion", url: "https://kristinachampion.com/", description: "Personal portfolio & brand presence", thumbnail: websiteKristina },
+  { title: "IDS Nepal Weekly", url: "https://www.idsnepal.com/weeklyArticle", description: "News & article publishing platform", thumbnail: websiteIds },
+  { title: "To The Left", url: "https://super-cranachan-fa4ff0.netlify.app/", description: "Modern landing page experience", thumbnail: websiteToTheLeft },
+  { title: "Manual.is", url: "https://www.manual.is/", description: "Health & wellness platform", thumbnail: websiteManual },
 ];
 
 const projectItems: ProjectItem[] = [
-  { title: "Facebook Page Boost Bot", description: "Automated bot system for strategic Facebook page boosting & audience engagement growth." },
-  { title: "PDP Party of Nepal", description: "Digital strategy and creative media collaboration for the PDP Party of Nepal's online presence." },
+  { title: "Facebook Page Boost Bot", description: "Automated bot system for strategic Facebook page boosting & audience engagement growth.", image: projectFacebookBot },
+  { title: "PDP Party of Nepal", description: "Digital strategy and creative media collaboration for the PDP Party of Nepal's online presence.", image: projectPdpNepal },
 ];
 
 const categories: { key: Category; label: string }[] = [
@@ -167,24 +175,34 @@ const VideoThumb = ({ src }: { src: string }) => {
 /* ── Website Cards ── */
 const WebsiteGrid = () => (
   <div className="grid md:grid-cols-2 gap-6">
-    {websiteItems.map(({ title, url, description }) => (
+    {websiteItems.map(({ title, url, description, thumbnail }) => (
       <a
         key={title}
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="reveal group glass rounded-2xl p-6 hover-lift cursor-pointer border border-border hover:border-primary/30 transition-all duration-300 relative overflow-hidden"
+        className="reveal group glass rounded-2xl overflow-hidden hover-lift cursor-pointer border border-border hover:border-primary/30 transition-all duration-300 relative"
       >
+        {/* Thumbnail */}
+        <div className="relative overflow-hidden aspect-video">
+          <img
+            src={thumbnail}
+            alt={title}
+            loading="lazy"
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 text-xs font-semibold text-background bg-primary/80 backdrop-blur-sm px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Live Site <ExternalLink size={12} />
+          </span>
+        </div>
         {/* light sweep */}
         <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-primary/5 to-transparent pointer-events-none" />
-        <div className="relative z-10">
-          <h3 className="font-heading text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+        <div className="relative z-10 p-5">
+          <h3 className="font-heading text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
             {title}
           </h3>
-          <p className="text-muted-foreground text-sm mb-4">{description}</p>
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Live Site <ExternalLink size={13} />
-          </span>
+          <p className="text-muted-foreground text-sm">{description}</p>
         </div>
       </a>
     ))}
@@ -194,13 +212,23 @@ const WebsiteGrid = () => (
 /* ── Project Cards ── */
 const ProjectGrid = () => (
   <div className="grid md:grid-cols-2 gap-6">
-    {projectItems.map(({ title, description }) => (
+    {projectItems.map(({ title, description, image }) => (
       <div
         key={title}
-        className="reveal group glass rounded-2xl p-6 border border-border hover:border-accent/40 transition-all duration-300 relative overflow-hidden"
+        className="reveal group glass rounded-2xl overflow-hidden border border-border hover:border-accent/40 transition-all duration-300 relative"
       >
+        <div className="relative overflow-hidden aspect-video">
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            width={800}
+            height={512}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
         <div className="absolute left-0 top-0 h-full w-1 bg-accent/0 group-hover:bg-accent transition-colors duration-300 rounded-l-2xl" />
-        <div className="pl-3 transition-transform duration-300 group-hover:-translate-y-1">
+        <div className="p-5 transition-transform duration-300 group-hover:-translate-y-1">
           <h3 className="font-heading text-lg font-bold text-foreground mb-2">{title}</h3>
           <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
         </div>
