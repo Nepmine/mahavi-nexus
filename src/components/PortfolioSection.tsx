@@ -212,13 +212,23 @@ const WebsiteGrid = () => (
 /* ── Project Cards ── */
 const ProjectGrid = () => (
   <div className="grid md:grid-cols-2 gap-6">
-    {projectItems.map(({ title, description }) => (
+    {projectItems.map(({ title, description, image }) => (
       <div
         key={title}
-        className="reveal group glass rounded-2xl p-6 border border-border hover:border-accent/40 transition-all duration-300 relative overflow-hidden"
+        className="reveal group glass rounded-2xl overflow-hidden border border-border hover:border-accent/40 transition-all duration-300 relative"
       >
+        <div className="relative overflow-hidden aspect-video">
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            width={800}
+            height={512}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
         <div className="absolute left-0 top-0 h-full w-1 bg-accent/0 group-hover:bg-accent transition-colors duration-300 rounded-l-2xl" />
-        <div className="pl-3 transition-transform duration-300 group-hover:-translate-y-1">
+        <div className="p-5 transition-transform duration-300 group-hover:-translate-y-1">
           <h3 className="font-heading text-lg font-bold text-foreground mb-2">{title}</h3>
           <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
         </div>
