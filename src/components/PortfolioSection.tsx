@@ -6,6 +6,12 @@ import design2 from "@/assets/portfolio/design-2.jpg";
 import design3 from "@/assets/portfolio/design-3.jpg";
 import designVideo1 from "@/assets/portfolio/design-video-1.mp4";
 import designVideo2 from "@/assets/portfolio/design-video-2.mp4";
+import websiteKristina from "@/assets/portfolio/website-kristina.png";
+import websiteIds from "@/assets/portfolio/website-ids.png";
+import websiteToTheLeft from "@/assets/portfolio/website-totheleft.png";
+import websiteManual from "@/assets/portfolio/website-manual.png";
+import projectFacebookBot from "@/assets/portfolio/project-facebook-bot.jpg";
+import projectPdpNepal from "@/assets/portfolio/project-pdp-nepal.jpg";
 
 const WHATSAPP_NUMBER = "9779866140033";
 const WHATSAPP_MSG = encodeURIComponent("Hi, I want to know more about MaHaVi.");
@@ -23,11 +29,13 @@ interface WebsiteItem {
   title: string;
   url: string;
   description: string;
+  thumbnail: string;
 }
 
 interface ProjectItem {
   title: string;
   description: string;
+  image: string;
 }
 
 const designItems: DesignItem[] = [
@@ -39,15 +47,15 @@ const designItems: DesignItem[] = [
 ];
 
 const websiteItems: WebsiteItem[] = [
-  { title: "Kristina Champion", url: "https://kristinachampion.com/", description: "Personal portfolio & brand presence" },
-  { title: "IDS Nepal Weekly", url: "https://www.idsnepal.com/weeklyArticle", description: "News & article publishing platform" },
-  { title: "Creative Landing", url: "https://super-cranachan-fa4ff0.netlify.app/", description: "Modern landing page experience" },
-  { title: "Manual.is", url: "https://www.manual.is/", description: "Health & wellness platform" },
+  { title: "Kristina Champion", url: "https://kristinachampion.com/", description: "Personal portfolio & brand presence", thumbnail: websiteKristina },
+  { title: "IDS Nepal Weekly", url: "https://www.idsnepal.com/weeklyArticle", description: "News & article publishing platform", thumbnail: websiteIds },
+  { title: "To The Left", url: "https://super-cranachan-fa4ff0.netlify.app/", description: "Modern landing page experience", thumbnail: websiteToTheLeft },
+  { title: "Manual.is", url: "https://www.manual.is/", description: "Health & wellness platform", thumbnail: websiteManual },
 ];
 
 const projectItems: ProjectItem[] = [
-  { title: "Facebook Page Boost Bot", description: "Automated bot system for strategic Facebook page boosting & audience engagement growth." },
-  { title: "PDP Party of Nepal", description: "Digital strategy and creative media collaboration for the PDP Party of Nepal's online presence." },
+  { title: "Facebook Page Boost Bot", description: "Automated bot system for strategic Facebook page boosting & audience engagement growth.", image: projectFacebookBot },
+  { title: "PDP Party of Nepal", description: "Digital strategy and creative media collaboration for the PDP Party of Nepal's online presence.", image: projectPdpNepal },
 ];
 
 const categories: { key: Category; label: string }[] = [
