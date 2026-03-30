@@ -175,24 +175,34 @@ const VideoThumb = ({ src }: { src: string }) => {
 /* ── Website Cards ── */
 const WebsiteGrid = () => (
   <div className="grid md:grid-cols-2 gap-6">
-    {websiteItems.map(({ title, url, description }) => (
+    {websiteItems.map(({ title, url, description, thumbnail }) => (
       <a
         key={title}
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="reveal group glass rounded-2xl p-6 hover-lift cursor-pointer border border-border hover:border-primary/30 transition-all duration-300 relative overflow-hidden"
+        className="reveal group glass rounded-2xl overflow-hidden hover-lift cursor-pointer border border-border hover:border-primary/30 transition-all duration-300 relative"
       >
+        {/* Thumbnail */}
+        <div className="relative overflow-hidden aspect-video">
+          <img
+            src={thumbnail}
+            alt={title}
+            loading="lazy"
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 text-xs font-semibold text-background bg-primary/80 backdrop-blur-sm px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Live Site <ExternalLink size={12} />
+          </span>
+        </div>
         {/* light sweep */}
         <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-primary/5 to-transparent pointer-events-none" />
-        <div className="relative z-10">
-          <h3 className="font-heading text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+        <div className="relative z-10 p-5">
+          <h3 className="font-heading text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
             {title}
           </h3>
-          <p className="text-muted-foreground text-sm mb-4">{description}</p>
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Live Site <ExternalLink size={13} />
-          </span>
+          <p className="text-muted-foreground text-sm">{description}</p>
         </div>
       </a>
     ))}
