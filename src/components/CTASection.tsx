@@ -15,7 +15,7 @@ const CTASection = () => (
         </p>
         <a
           href="#contact"
-          className="inline-flex items-center gap-2 gradient-tech rounded-full px-10 py-4 text-primary-foreground font-semibold text-lg hover:opacity-90 transition-all glow-primary animate-pulse-glow group"
+          className="inline-flex items-center gap-2 gradient-tech rounded-full px-10 py-4 text-primary-foreground font-semibold text-lg hover:opacity-90 hover:scale-[1.03] transition-transform duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] glow-primary animate-pulse-glow group"
         >
           Let's Build Something Powerful
           <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />

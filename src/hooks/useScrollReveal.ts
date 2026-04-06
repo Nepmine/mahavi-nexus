@@ -6,11 +6,18 @@ export const useScrollReveal = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
+            // Apply stagger delay for grouped children
+            const el = entry.target as HTMLElement;
+            const delay = el.style.animationDelay || el.dataset.revealDelay;
+            if (delay) {
+              el.style.transitionDelay = delay;
+            }
+            el.classList.add("visible");
+            observer.unobserve(el);
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }
     );
 
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));

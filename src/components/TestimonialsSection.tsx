@@ -17,7 +17,7 @@ const TestimonialsSection = () => (
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         {testimonials.map(({ name, role, text }, i) => (
-          <div key={name} className="reveal glass rounded-2xl p-8 hover-lift" style={{ animationDelay: `${i * 0.1}s` }}>
+          <div key={name} className="reveal glass rounded-2xl p-8 hover-lift" style={{ animationDelay: `${i * 0.08}s` }}>
             <div className="flex gap-1 mb-4">
               {[...Array(5)].map((_, j) => (
                 <Star key={j} size={16} className="fill-primary text-primary" />

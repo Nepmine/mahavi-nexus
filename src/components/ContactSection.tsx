@@ -104,7 +104,7 @@ const ContactSection = () => {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full gradient-tech rounded-xl py-3.5 text-primary-foreground font-semibold inline-flex items-center justify-center gap-2 hover:opacity-90 hover:scale-[1.01] active:scale-[0.98] transition-all duration-200 glow-primary disabled:opacity-60"
+                className="w-full gradient-tech rounded-xl py-3.5 text-primary-foreground font-semibold inline-flex items-center justify-center gap-2 hover:opacity-90 hover:scale-[1.03] active:scale-[0.98] transition-transform duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] glow-primary disabled:opacity-60"
               >
                 <Send size={18} />
                 {status === "sending" ? "Sending..." : "Send Message"}
@@ -118,7 +118,7 @@ const ContactSection = () => {
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass border border-primary/20 text-foreground font-semibold hover:border-primary/50 hover:scale-105 active:scale-95 transition-all duration-300 animate-pulse-glow"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass border border-primary/20 text-foreground font-semibold hover:border-primary/50 hover:scale-[1.03] active:scale-[0.97] transition-transform duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] animate-pulse-glow"
             >
               <MessageCircle size={22} className="text-primary" />
               Chat on WhatsApp

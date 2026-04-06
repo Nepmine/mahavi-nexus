@@ -36,8 +36,8 @@ const DualExperience = () => {
             <p className="text-muted-foreground text-sm mb-8">Precision-engineered digital solutions</p>
             <div className="grid sm:grid-cols-2 gap-4">
               {techServices.map(({ Icon, title, desc }) => (
-                <div key={title} className="glass rounded-xl p-5 hover-lift cursor-default">
-                  <Icon size={24} className="text-primary mb-3" />
+                <div key={title} className="glass rounded-xl p-5 hover-lift cursor-default group/card">
+                  <Icon size={24} className="text-primary mb-3 transition-transform duration-[250ms] group-hover/card:-translate-y-0.5" />
                   <h4 className="font-heading font-semibold text-foreground mb-1">{title}</h4>
                   <p className="text-muted-foreground text-sm">{desc}</p>
                 </div>
@@ -52,8 +52,8 @@ const DualExperience = () => {
             <p className="text-muted-foreground text-sm mb-8">Bold, expressive visual storytelling</p>
             <div className="grid sm:grid-cols-2 gap-4">
               {creativeServices.map(({ Icon, title, desc }) => (
-                <div key={title} className="glass rounded-xl p-5 hover-lift cursor-default">
-                  <Icon size={24} className="text-secondary" />
+                <div key={title} className="glass rounded-xl p-5 hover-lift cursor-default group/card">
+                  <Icon size={24} className="text-secondary transition-transform duration-[250ms] group-hover/card:-translate-y-0.5" />
                   <h4 className="font-heading font-semibold text-foreground mb-1 mt-3">{title}</h4>
                   <p className="text-muted-foreground text-sm">{desc}</p>
                 </div>

@@ -23,7 +23,7 @@ const ProcessSection = () => (
         <div className="hidden md:block absolute top-10 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-primary via-accent to-secondary" />
 
         {steps.map(({ Icon, title, desc }, i) => (
-          <div key={title} className="reveal flex-1 flex flex-col items-center text-center relative" style={{ animationDelay: `${i * 0.1}s` }}>
+          <div key={title} className="reveal flex-1 flex flex-col items-center text-center relative" style={{ animationDelay: `${i * 0.08}s` }}>
             <div className="w-20 h-20 rounded-full gradient-tech flex items-center justify-center mb-4 relative z-10 shadow-elevated">
               <Icon size={28} className="text-primary-foreground" />
             </div>
