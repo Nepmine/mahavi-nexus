@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Services", href: "#services" },
   { label: "Portfolio", href: "#portfolio" },
   { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
+  { label: "About", href: "#why-us" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -22,12 +21,12 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-strong shadow-card py-3" : "py-5"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "glass shadow-elevated py-3" : "py-5"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
-        <a href="#" className="font-heading text-2xl font-bold tracking-tight hover:scale-105 transition-transform">
+        <a href="#" className="font-heading text-2xl font-bold tracking-tight">
           <span className="gradient-text-tech">MaHa</span>
           <span className="gradient-text-creative">Vi</span>
         </a>
@@ -38,23 +37,22 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.label}
             </a>
           ))}
           <a
             href="#contact"
-            className="gradient-tech rounded-full px-6 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 hover:scale-105 active:scale-95 glow-primary inline-flex items-center gap-1.5"
+            className="gradient-tech rounded-full px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 glow-primary"
           >
             Start a Project
-            <ArrowUpRight size={14} />
           </a>
         </div>
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-foreground hover:scale-110 transition-transform"
+          className="md:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -63,12 +61,12 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden glass-strong mt-2 mx-4 rounded-2xl p-6 animate-scale-in shadow-elevated">
+        <div className="md:hidden glass mt-2 mx-4 rounded-xl p-6 animate-scale-in">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="block py-3 text-foreground font-medium hover:text-primary transition-colors"
+              className="block py-3 text-foreground font-medium"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
@@ -76,7 +74,7 @@ const Navbar = () => {
           ))}
           <a
             href="#contact"
-            className="block mt-4 gradient-tech rounded-full px-5 py-3 text-center text-sm font-semibold text-primary-foreground"
+            className="block mt-4 gradient-tech rounded-full px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground"
             onClick={() => setMobileOpen(false)}
           >
             Start a Project
