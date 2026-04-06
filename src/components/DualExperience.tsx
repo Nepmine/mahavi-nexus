@@ -1,4 +1,4 @@
-import { Code2, Smartphone, Brain, Palette, Video, Megaphone, Monitor, PenTool } from "lucide-react";
+import { Code2, Smartphone, Brain, Palette, Video, Megaphone, Monitor, PenLine, TrendingUp, Briefcase } from "lucide-react";
 
 const techServices = [
   { Icon: Code2, title: "Web Development", desc: "Modern, fast, scalable web applications" },
@@ -10,8 +10,10 @@ const techServices = [
 const creativeServices = [
   { Icon: Palette, title: "Branding & Identity", desc: "Logos, style guides, brand systems" },
   { Icon: Video, title: "Video Production", desc: "Motion graphics & cinematic content" },
-  { Icon: Megaphone, title: "Social Media", desc: "Strategy, content & management" },
-  { Icon: PenTool, title: "UI/UX Design", desc: "User-centered, beautiful interfaces" },
+  { Icon: Megaphone, title: "Digital Marketing", desc: "SEO, paid ads & growth strategies that convert" },
+  { Icon: PenLine, title: "Content Writing", desc: "Crafted by writers behind popular YouTube channels & open-source projects", featured: true },
+  { Icon: TrendingUp, title: "Social Media", desc: "Strategy, content & community management" },
+  { Icon: Briefcase, title: "Business Consulting", desc: "Market positioning, strategy & scalable growth plans" },
 ];
 
 const DualExperience = () => {
