@@ -1,10 +1,11 @@
-import { Code2, Palette, Smartphone, Globe, Video, Megaphone, Brain, Layers } from "lucide-react";
+import { Code2, Palette, Smartphone, Globe, Video, Megaphone, Brain, Layers, PenTool } from "lucide-react";
 
 const icons = [
   { Icon: Code2, label: "Web Development" },
   { Icon: Smartphone, label: "App Development" },
   { Icon: Brain, label: "AI Integration" },
   { Icon: Globe, label: "Digital Strategy" },
+  { Icon: PenTool, label: "Content Writing" },
   { Icon: Palette, label: "Branding" },
   { Icon: Video, label: "Video Production" },
   { Icon: Megaphone, label: "Social Media" },
