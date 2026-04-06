@@ -22,7 +22,7 @@ const Footer = () => (
             <a
               key={i}
               href={href}
-              className="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-primary hover:glow-primary transition-all"
+              className="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-primary hover:scale-[1.03] transition-all duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
               <Icon size={18} />
             </a>

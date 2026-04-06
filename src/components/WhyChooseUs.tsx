@@ -22,7 +22,7 @@ const WhyChooseUs = () => (
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {points.map(({ Icon, title, desc }, i) => (
-          <div key={title} className="reveal glass rounded-2xl p-8 text-center hover-lift" style={{ animationDelay: `${i * 0.1}s` }}>
+          <div key={title} className="reveal glass rounded-2xl p-8 text-center hover-lift" style={{ animationDelay: `${i * 0.08}s` }}>
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl gradient-tech mb-5">
               <Icon size={24} className="text-primary-foreground" />
             </div>
