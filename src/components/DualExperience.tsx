@@ -1,4 +1,4 @@
-import { Code2, Smartphone, Brain, Palette, Video, Megaphone, Monitor, PenTool } from "lucide-react";
+import { Code2, Smartphone, Brain, Palette, Video, Megaphone, Monitor, PenLine, TrendingUp, Briefcase } from "lucide-react";
 
 const techServices = [
   { Icon: Code2, title: "Web Development", desc: "Modern, fast, scalable web applications" },
@@ -10,8 +10,10 @@ const techServices = [
 const creativeServices = [
   { Icon: Palette, title: "Branding & Identity", desc: "Logos, style guides, brand systems" },
   { Icon: Video, title: "Video Production", desc: "Motion graphics & cinematic content" },
-  { Icon: Megaphone, title: "Social Media", desc: "Strategy, content & management" },
-  { Icon: PenTool, title: "UI/UX Design", desc: "User-centered, beautiful interfaces" },
+  { Icon: Megaphone, title: "Digital Marketing", desc: "SEO, paid ads & growth strategies that convert" },
+  { Icon: PenLine, title: "Content Writing", desc: "Crafted by writers behind popular YouTube channels & open-source projects", featured: true },
+  { Icon: TrendingUp, title: "Social Media", desc: "Strategy, content & community management" },
+  { Icon: Briefcase, title: "Business Consulting", desc: "Market positioning, strategy & scalable growth plans" },
 ];
 
 const DualExperience = () => {
@@ -51,10 +53,10 @@ const DualExperience = () => {
             <h3 className="font-heading text-2xl font-bold mb-2 gradient-text-creative">Creative</h3>
             <p className="text-muted-foreground text-sm mb-8">Bold, expressive visual storytelling</p>
             <div className="grid sm:grid-cols-2 gap-4">
-              {creativeServices.map(({ Icon, title, desc }) => (
-                <div key={title} className="glass rounded-xl p-5 hover-lift cursor-default">
+              {creativeServices.map(({ Icon, title, desc, featured }) => (
+                <div key={title} className={`glass rounded-xl p-5 hover-lift cursor-default ${featured ? 'ring-1 ring-secondary/40 bg-secondary/5' : ''}`}>
                   <Icon size={24} className="text-secondary" />
-                  <h4 className="font-heading font-semibold text-foreground mb-1 mt-3">{title}</h4>
+                  <h4 className={`font-heading font-semibold mb-1 mt-3 ${featured ? 'gradient-text-creative' : 'text-foreground'}`}>{title}</h4>
                   <p className="text-muted-foreground text-sm">{desc}</p>
                 </div>
               ))}
