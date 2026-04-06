@@ -11,7 +11,7 @@ const creativeServices = [
   { Icon: Palette, title: "Branding & Identity", desc: "Logos, style guides, brand systems" },
   { Icon: Video, title: "Video Production", desc: "Motion graphics & cinematic content" },
   { Icon: Megaphone, title: "Social Media", desc: "Strategy, content & management" },
-  { Icon: PenTool, title: "UI/UX Design", desc: "User-centered, beautiful interfaces" },
+  { Icon: PenTool, title: "Digital Marketing & Consulting", desc: "Content writing, strategy & business growth" },
 ];
 
 const DualExperience = () => {
