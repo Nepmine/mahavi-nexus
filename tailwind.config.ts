@@ -82,8 +82,12 @@ export default {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "hero-text-reveal": {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+          "0%": { opacity: "0", transform: "translateY(40px)", filter: "blur(8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)", filter: "blur(0)" },
+        },
+        "hero-blur-reveal": {
+          "0%": { opacity: "0", transform: "translateY(40px)", filter: "blur(8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)", filter: "blur(0)" },
         },
         "fade-in-left": {
           "0%": { opacity: "0", transform: "translateX(-30px)" },
