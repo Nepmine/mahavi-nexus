@@ -108,8 +108,18 @@
                 box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .hover-lift:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 16px 48px -12px hsla(220, 20%, 14%, 0.1);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 50px -12px hsla(220, 20%, 14%, 0.12),
+                0 0 20px hsla(160, 40%, 28%, 0.06);
+  }
+
+  .btn-premium {
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-premium:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px -8px hsla(220, 20%, 14%, 0.15);
   }
 }
 
@@ -174,13 +184,17 @@ html {
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
+/* Enhanced reveal with scale + blur */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(60px) scale(0.96);
+  filter: blur(4px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
