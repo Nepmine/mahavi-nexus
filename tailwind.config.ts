@@ -115,6 +115,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards",
         "hero-text-reveal": "hero-text-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+        "hero-blur-reveal": "hero-blur-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards",
         "fade-in-left": "fade-in-left 0.6s ease-out forwards",
         "fade-in-right": "fade-in-right 0.6s ease-out forwards",
         "scale-in": "scale-in 0.4s ease-out forwards",
