@@ -6,6 +6,7 @@ export const useScrollReveal = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            // Apply stagger delay for grouped children
             const el = entry.target as HTMLElement;
             const delay = el.style.animationDelay || el.dataset.revealDelay;
             if (delay) {
