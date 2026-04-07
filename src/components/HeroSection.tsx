@@ -1,10 +1,12 @@
 import ParticleBackground from "./ParticleBackground";
+import FeatherRibbon from "./FeatherRibbon";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden hero-gradient-animated" style={{ background: "var(--gradient-hero)" }}>
       <ParticleBackground />
+      <FeatherRibbon />
 
       {/* Decorative blobs */}
       <div className="absolute top-20 right-10 w-96 h-96 rounded-full opacity-20 blur-3xl gradient-creative" />
