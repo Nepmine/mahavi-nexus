@@ -1,4 +1,5 @@
 import ParticleBackground from "./ParticleBackground";
+import FeatherRibbon from "./FeatherRibbon";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 const HeroSection = () => {
