@@ -11,24 +11,28 @@ import CTASection from "@/components/CTASection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import FlowingLightBackground from "@/components/FlowingLightBackground";
 
 const Index = () => {
   useScrollReveal();
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <HeroSection />
-      <BrandStrip />
-      <DualExperience />
-      <WhyChooseUs />
-      <PortfolioSection />
-      <ProcessSection />
-      <TestimonialsSection />
-      <CTASection />
-      <ContactSection />
-      <Footer />
-      <FloatingCTA />
+    <div className="min-h-screen bg-background relative">
+      <FlowingLightBackground />
+      <div className="relative" style={{ zIndex: 1 }}>
+        <Navbar />
+        <HeroSection />
+        <BrandStrip />
+        <DualExperience />
+        <WhyChooseUs />
+        <PortfolioSection />
+        <ProcessSection />
+        <TestimonialsSection />
+        <CTASection />
+        <ContactSection />
+        <Footer />
+        <FloatingCTA />
+      </div>
     </div>
   );
 };
