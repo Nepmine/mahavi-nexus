@@ -4,7 +4,7 @@ import { z } from "zod";
 
 const WHATSAPP_NUMBER = "9779866140033";
 const WHATSAPP_MSG = encodeURIComponent("Hi, I want to know more about MaHaVi.");
-const EMAIL = "surajghimire13579@gmail.com";
+const EMAIL = "contactmahavi+main-website@gmail.com";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
