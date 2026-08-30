@@ -106,7 +106,7 @@ export const DesignGrid = () => {
                 className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
               />
             ) : (
-              <VideoThumb src={item.src as string} />
+              <VideoThumb src={item.src as string} poster={item.poster} />
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
               <div className="flex items-center justify-between w-full">
@@ -132,17 +132,43 @@ export const DesignGrid = () => {
   );
 };
 
-const VideoThumb = ({ src }: { src: string }) => {
+/**
+ * The two clips are 800KB between them and sit well below the fold. Autoplaying
+ * them from the markup made the browser fetch both before a visitor had scrolled
+ * anywhere near the portfolio. The poster frame paints immediately; the clip is
+ * attached only once the card is within a screen of the viewport, after which it
+ * behaves exactly as before — muted, looping, playing on its own.
+ */
+const VideoThumb = ({ src, poster }: { src: string; poster?: string }) => {
   const ref = useRef<HTMLVideoElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || visible) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [visible]);
+
   return (
     <video
       ref={ref}
-      src={src}
+      src={visible ? src : undefined}
+      poster={poster}
       muted
       loop
       autoPlay
       playsInline
-      preload="metadata"
+      preload="none"
       className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
     />
   );

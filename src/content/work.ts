@@ -23,6 +23,8 @@ export interface DesignItem {
   type: "image" | "video";
   src: StaticImageData | string;
   title: string;
+  /** Videos only: the frame shown until the clip is fetched. */
+  poster?: string;
 }
 
 export interface WebsiteItem {
@@ -42,10 +44,10 @@ export interface ProjectItem {
 
 export const designItems: DesignItem[] = [
   { type: "image", src: design1, title: "3D Environment — Fortress" },
-  { type: "video", src: designVideo1, title: "Motion Graphics Reel" },
+  { type: "video", src: designVideo1, poster: "/portfolio/design-video-1-poster.jpg", title: "Motion Graphics Reel" },
   { type: "image", src: design2, title: "3D Scene — Inferno" },
   { type: "image", src: design3, title: "Award Ceremony Concept" },
-  { type: "video", src: designVideo2, title: "Visual FX Showcase" },
+  { type: "video", src: designVideo2, poster: "/portfolio/design-video-2-poster.jpg", title: "Visual FX Showcase" },
 ];
 
 export const websiteItems: WebsiteItem[] = [
