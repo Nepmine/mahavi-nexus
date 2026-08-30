@@ -1,62 +1,21 @@
-import { useState, useRef, useEffect } from "react";
-import { ExternalLink, X, Eye } from "lucide-react";
+"use client";
 
-import design1 from "@/assets/portfolio/design-1.jpg";
-import design2 from "@/assets/portfolio/design-2.jpg";
-import design3 from "@/assets/portfolio/design-3.jpg";
-import designVideo1 from "@/assets/portfolio/design-video-1.mp4";
-import designVideo2 from "@/assets/portfolio/design-video-2.mp4";
-import websiteKristina from "@/assets/portfolio/website-kristina.png";
-import websiteIds from "@/assets/portfolio/website-ids.png";
-import websiteToTheLeft from "@/assets/portfolio/website-totheleft.png";
-import websiteManual from "@/assets/portfolio/website-manual.png";
-import projectFacebookBot from "@/assets/portfolio/project-facebook-bot.jpg";
-import projectPdpNepal from "@/assets/portfolio/project-pdp-nepal.jpg";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, ExternalLink, Eye, X } from "lucide-react";
 
-const WHATSAPP_NUMBER = "9779866140033";
-const WHATSAPP_MSG = encodeURIComponent("Hi, I want to know more about MaHaVi.");
-const INSTAGRAM_URL = "https://www.instagram.com/_beyond_visuals_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==";
+import { SITE, whatsappUrl } from "@/content/site";
+import {
+  designItems,
+  projectItems,
+  websiteItems,
+  type DesignItem,
+  type ProjectItem,
+  type WebsiteItem,
+} from "@/content/work";
 
 type Category = "all" | "design" | "websites" | "projects";
-
-interface DesignItem {
-  type: "image" | "video";
-  src: string;
-  title: string;
-}
-
-interface WebsiteItem {
-  title: string;
-  url: string;
-  description: string;
-  thumbnail: string;
-}
-
-interface ProjectItem {
-  title: string;
-  description: string;
-  image: string;
-}
-
-const designItems: DesignItem[] = [
-  { type: "image", src: design1, title: "3D Environment — Fortress" },
-  { type: "video", src: designVideo1, title: "Motion Graphics Reel" },
-  { type: "image", src: design2, title: "3D Scene — Inferno" },
-  { type: "image", src: design3, title: "Award Ceremony Concept" },
-  { type: "video", src: designVideo2, title: "Visual FX Showcase" },
-];
-
-const websiteItems: WebsiteItem[] = [
-  { title: "Kristina Champion", url: "https://kristinachampion.com/", description: "Personal portfolio & brand presence", thumbnail: websiteKristina },
-  { title: "IDS Nepal Weekly", url: "https://www.idsnepal.com/weeklyArticle", description: "News & article publishing platform", thumbnail: websiteIds },
-  { title: "To The Left", url: "https://super-cranachan-fa4ff0.netlify.app/", description: "Modern landing page experience", thumbnail: websiteToTheLeft },
-  { title: "Manual.is", url: "https://www.manual.is/", description: "Health & wellness platform", thumbnail: websiteManual },
-];
-
-const projectItems: ProjectItem[] = [
-  { title: "Facebook Page Boost Bot", description: "Automated bot system for strategic Facebook page boosting & audience engagement growth.", image: projectFacebookBot },
-  { title: "PDP Party of Nepal", description: "Digital strategy and creative media collaboration for the PDP Party of Nepal's online presence.", image: projectPdpNepal },
-];
 
 const categories: { key: Category; label: string }[] = [
   { key: "all", label: "All" },
@@ -77,6 +36,9 @@ const DesignModal = ({ item, onClose }: { item: DesignItem; onClose: () => void 
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-in"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={item.title}
     >
       <div className="absolute inset-0 bg-foreground/60 backdrop-blur-md" />
       <div
@@ -86,18 +48,31 @@ const DesignModal = ({ item, onClose }: { item: DesignItem; onClose: () => void 
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-background/80 flex items-center justify-center text-foreground hover:bg-background transition-colors"
+          aria-label="Close preview"
         >
           <X size={18} />
         </button>
         {item.type === "image" ? (
-          <img src={item.src} alt={item.title} className="w-full max-h-[75vh] object-contain bg-foreground/5" />
+          <Image
+            src={item.src}
+            alt={item.title}
+            sizes="(max-width: 768px) 100vw, 768px"
+            className="w-full max-h-[75vh] object-contain bg-foreground/5"
+          />
         ) : (
-          <video src={item.src} autoPlay muted loop className="w-full max-h-[75vh] object-contain bg-foreground/5" />
+          <video
+            src={item.src as string}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full max-h-[75vh] object-contain bg-foreground/5"
+          />
         )}
         <div className="p-5">
           <h3 className="font-heading text-lg font-bold text-foreground">{item.title}</h3>
           <a
-            href={INSTAGRAM_URL}
+            href={SITE.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-2 inline-flex items-center gap-1.5 text-sm text-primary font-medium hover:underline"
@@ -111,7 +86,7 @@ const DesignModal = ({ item, onClose }: { item: DesignItem; onClose: () => void 
 };
 
 /* ── Design Grid ── */
-const DesignGrid = () => {
+export const DesignGrid = () => {
   const [modal, setModal] = useState<DesignItem | null>(null);
 
   return (
@@ -124,14 +99,14 @@ const DesignGrid = () => {
             onClick={() => setModal(item)}
           >
             {item.type === "image" ? (
-              <img
+              <Image
                 src={item.src}
                 alt={item.title}
-                loading="lazy"
+                sizes="(max-width: 768px) 50vw, 33vw"
                 className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
               />
             ) : (
-              <VideoThumb src={item.src} />
+              <VideoThumb src={item.src as string} />
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
               <div className="flex items-center justify-between w-full">
@@ -144,7 +119,7 @@ const DesignGrid = () => {
       </div>
       <div className="mt-4 text-center">
         <a
-          href={INSTAGRAM_URL}
+          href={SITE.instagram}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-sm text-primary font-medium hover:underline"
@@ -167,15 +142,16 @@ const VideoThumb = ({ src }: { src: string }) => {
       loop
       autoPlay
       playsInline
+      preload="metadata"
       className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
     />
   );
 };
 
 /* ── Website Cards ── */
-const WebsiteGrid = () => (
+export const WebsiteGrid = ({ items = websiteItems }: { items?: WebsiteItem[] }) => (
   <div className="grid md:grid-cols-2 gap-6">
-    {websiteItems.map(({ title, url, description, thumbnail }) => (
+    {items.map(({ title, url, description, thumbnail }) => (
       <a
         key={title}
         href={url}
@@ -185,11 +161,12 @@ const WebsiteGrid = () => (
       >
         {/* Thumbnail */}
         <div className="relative overflow-hidden aspect-video">
-          <img
+          <Image
             src={thumbnail}
-            alt={title}
-            loading="lazy"
-            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            alt={`${title} — website built by MaHaVi`}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 text-xs font-semibold text-background bg-primary/80 backdrop-blur-sm px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -210,30 +187,47 @@ const WebsiteGrid = () => (
 );
 
 /* ── Project Cards ── */
-const ProjectGrid = () => (
+const ProjectCardInner = ({ title, description, image, href }: ProjectItem) => (
+  <>
+    <div className="relative overflow-hidden aspect-video">
+      <Image
+        src={image}
+        alt={`${title} — project by MaHaVi`}
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+    </div>
+    <div className="absolute left-0 top-0 h-full w-1 bg-accent/0 group-hover:bg-accent transition-colors duration-300 rounded-l-2xl" />
+    <div className="p-5 transition-transform duration-300 group-hover:-translate-y-1">
+      <h3 className="font-heading text-lg font-bold text-foreground mb-2">{title}</h3>
+      <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+      {href && (
+        <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+          Read the case study
+          <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+        </span>
+      )}
+    </div>
+  </>
+);
+
+const projectCardClass =
+  "reveal group glass rounded-2xl overflow-hidden border border-border hover:border-accent/40 transition-all duration-300 relative";
+
+export const ProjectGrid = ({ items = projectItems }: { items?: ProjectItem[] }) => (
   <div className="grid md:grid-cols-2 gap-6">
-    {projectItems.map(({ title, description, image }) => (
-      <div
-        key={title}
-        className="reveal group glass rounded-2xl overflow-hidden border border-border hover:border-accent/40 transition-all duration-300 relative"
-      >
-        <div className="relative overflow-hidden aspect-video">
-          <img
-            src={image}
-            alt={title}
-            loading="lazy"
-            width={800}
-            height={512}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+    {items.map((item) =>
+      item.href ? (
+        <Link key={item.title} href={item.href} className={`${projectCardClass} block`}>
+          <ProjectCardInner {...item} />
+        </Link>
+      ) : (
+        <div key={item.title} className={projectCardClass}>
+          <ProjectCardInner {...item} />
         </div>
-        <div className="absolute left-0 top-0 h-full w-1 bg-accent/0 group-hover:bg-accent transition-colors duration-300 rounded-l-2xl" />
-        <div className="p-5 transition-transform duration-300 group-hover:-translate-y-1">
-          <h3 className="font-heading text-lg font-bold text-foreground mb-2">{title}</h3>
-          <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-        </div>
-      </div>
-    ))}
+      ),
+    )}
   </div>
 );
 
@@ -255,7 +249,7 @@ const PortfolioSection = () => {
     const btn = document.activeElement as HTMLElement;
     btn?.classList.add("scale-95");
     setTimeout(() => {
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`, "_blank");
+      window.open(whatsappUrl(), "_blank");
       btn?.classList.remove("scale-95");
     }, 250);
   };

@@ -1,26 +1,44 @@
+import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
-import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
+import globals from "globals";
 import tseslint from "typescript-eslint";
 
+const compat = new FlatCompat({ baseDirectory: import.meta.dirname });
+
 export default tseslint.config(
-  { ignores: ["dist"] },
+  // Build output and generated route types are not ours to lint.
+  { ignores: ["dist", ".next", "next-env.d.ts", "node_modules"] },
+
+  // next/core-web-vitals is here for the rules that are really SEO rules:
+  // no bare <img>, no <a> for internal navigation, no unoptimised fonts.
+  ...compat.extends("next/core-web-vitals"),
+
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      ecmaVersion: 2022,
+      globals: { ...globals.browser, ...globals.node },
     },
-    plugins: {
-      "react-hooks": reactHooks,
-      "react-refresh": reactRefresh,
-    },
+    plugins: { "react-hooks": reactHooks },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
       "@typescript-eslint/no-unused-vars": "off",
     },
+  },
+
+  {
+    // Vendored shadcn/ui primitives: kept as generated, not hand-maintained.
+    files: ["src/components/ui/**"],
+    rules: {
+      "@typescript-eslint/no-empty-object-type": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
+
+  {
+    files: ["tailwind.config.ts", "*.config.{js,mjs,ts}"],
+    rules: { "@typescript-eslint/no-require-imports": "off" },
   },
 );

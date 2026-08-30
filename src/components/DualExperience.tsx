@@ -1,18 +1,41 @@
-import { Code2, Smartphone, Brain, Palette, Video, Megaphone, Monitor, PenTool } from "lucide-react";
+import Link from "next/link";
 
-const techServices = [
-  { Icon: Code2, title: "Web Development", desc: "Modern, fast, scalable web applications" },
-  { Icon: Smartphone, title: "App Development", desc: "Native & cross-platform mobile apps" },
-  { Icon: Brain, title: "AI Integration", desc: "Smart automation & machine learning" },
-  { Icon: Monitor, title: "SaaS Platforms", desc: "End-to-end product development" },
-];
+import { CREATIVE_SERVICES, TECH_SERVICES, type Service } from "@/content/services";
 
-const creativeServices = [
-  { Icon: Palette, title: "Branding & Identity", desc: "Logos, style guides, brand systems" },
-  { Icon: Video, title: "Video Production", desc: "Motion graphics & cinematic content" },
-  { Icon: Megaphone, title: "Social Media", desc: "Strategy, content & management" },
-  { Icon: PenTool, title: "Digital Marketing & Consulting", desc: "Content writing, strategy & business growth" },
-];
+/**
+ * Card markup is deliberately duplicated per side rather than parameterised:
+ * the two differ in icon colour and in where the spacing sits, and folding
+ * that into props made the difference harder to see, not easier.
+ */
+const ServiceCard = ({ service, side }: { service: Service; side: "tech" | "creative" }) => {
+  const { Icon, title, desc, slug } = service;
+  return (
+    <Link
+      href={`/services/${slug}`}
+      className="glass rounded-xl p-5 hover-lift group/card block"
+      aria-label={`${title} — ${desc}`}
+    >
+      {side === "tech" ? (
+        <>
+          <Icon
+            size={24}
+            className="text-primary mb-3 transition-transform duration-[250ms] group-hover/card:-translate-y-0.5"
+          />
+          <h4 className="font-heading font-semibold text-foreground mb-1">{title}</h4>
+        </>
+      ) : (
+        <>
+          <Icon
+            size={24}
+            className="text-secondary transition-transform duration-[250ms] group-hover/card:-translate-y-0.5"
+          />
+          <h4 className="font-heading font-semibold text-foreground mb-1 mt-3">{title}</h4>
+        </>
+      )}
+      <p className="text-muted-foreground text-sm">{desc}</p>
+    </Link>
+  );
+};
 
 const DualExperience = () => {
   return (
@@ -35,28 +58,23 @@ const DualExperience = () => {
             <h3 className="font-heading text-2xl font-bold mb-2 gradient-text-tech">Technology</h3>
             <p className="text-muted-foreground text-sm mb-8">Precision-engineered digital solutions</p>
             <div className="grid sm:grid-cols-2 gap-4">
-              {techServices.map(({ Icon, title, desc }) => (
-                <div key={title} className="glass rounded-xl p-5 hover-lift cursor-default group/card">
-                  <Icon size={24} className="text-primary mb-3 transition-transform duration-[250ms] group-hover/card:-translate-y-0.5" />
-                  <h4 className="font-heading font-semibold text-foreground mb-1">{title}</h4>
-                  <p className="text-muted-foreground text-sm">{desc}</p>
-                </div>
+              {TECH_SERVICES.map((service) => (
+                <ServiceCard key={service.slug} service={service} side="tech" />
               ))}
             </div>
           </div>
 
           {/* Creative Side */}
-          <div className="reveal rounded-2xl p-8 md:p-10 border border-secondary/20 bg-gradient-to-br from-secondary/5 to-transparent relative overflow-hidden" style={{ animationDelay: "0.15s" }}>
+          <div
+            className="reveal rounded-2xl p-8 md:p-10 border border-secondary/20 bg-gradient-to-br from-secondary/5 to-transparent relative overflow-hidden"
+            style={{ animationDelay: "0.15s" }}
+          >
             <div className="absolute top-4 right-4 w-32 h-32 rounded-full opacity-10 blur-2xl gradient-creative" />
             <h3 className="font-heading text-2xl font-bold mb-2 gradient-text-creative">Creative</h3>
             <p className="text-muted-foreground text-sm mb-8">Bold, expressive visual storytelling</p>
             <div className="grid sm:grid-cols-2 gap-4">
-              {creativeServices.map(({ Icon, title, desc }) => (
-                <div key={title} className="glass rounded-xl p-5 hover-lift cursor-default group/card">
-                  <Icon size={24} className="text-secondary transition-transform duration-[250ms] group-hover/card:-translate-y-0.5" />
-                  <h4 className="font-heading font-semibold text-foreground mb-1 mt-3">{title}</h4>
-                  <p className="text-muted-foreground text-sm">{desc}</p>
-                </div>
+              {CREATIVE_SERVICES.map((service) => (
+                <ServiceCard key={service.slug} service={service} side="creative" />
               ))}
             </div>
           </div>

@@ -14,7 +14,7 @@ const WhyChooseUs = () => (
       <div className="text-center mb-16 reveal">
         <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">Why MaHaVi</p>
         <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
-          Don't Let Budget Limit Your Vision
+          Don&apos;t Let Budget Limit Your Vision
         </h2>
         <p className="text-muted-foreground max-w-xl mx-auto">
           Modern, scalable solutions crafted by a team that cares about your growth as much as you do.
