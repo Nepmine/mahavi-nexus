@@ -23,7 +23,7 @@ const TestimonialsSection = () => (
                 <Star key={j} size={16} className="fill-primary text-primary" />
               ))}
             </div>
-            <p className="text-foreground mb-6 leading-relaxed">"{text}"</p>
+            <p className="text-foreground mb-6 leading-relaxed">&quot;{text}&quot;</p>
             <div>
               <p className="font-heading font-semibold text-foreground">{name}</p>
               <p className="text-sm text-muted-foreground">{role}</p>

@@ -1,10 +1,12 @@
+"use client";
+
 import { useState } from "react";
 import { Send, MessageCircle, CheckCircle, AlertCircle } from "lucide-react";
 import { z } from "zod";
 
-const WHATSAPP_NUMBER = "9779866140033";
-const WHATSAPP_MSG = encodeURIComponent("Hi, I want to know more about MaHaVi.");
-const EMAIL = "contactmahavi+main-website@gmail.com";
+import { SITE, whatsappUrl } from "@/content/site";
+
+const EMAIL = SITE.email;
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -61,7 +63,7 @@ const ContactSection = () => {
             Turn Your Idea Into Reality
           </h2>
           <p className="text-muted-foreground max-w-md mx-auto">
-            Tell us about your project. We'll get back to you within 24 hours.
+            Tell us about your project. We&apos;ll get back to you within 24 hours.
           </p>
         </div>
 
@@ -70,7 +72,7 @@ const ContactSection = () => {
             <div className="glass rounded-2xl p-10 text-center animate-scale-in">
               <CheckCircle size={48} className="text-primary mx-auto mb-4" />
               <h3 className="font-heading text-2xl font-bold text-foreground mb-2">Message Sent!</h3>
-              <p className="text-muted-foreground">We'll get back to you soon.</p>
+              <p className="text-muted-foreground">We&apos;ll get back to you soon.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 md:p-10 space-y-5">
@@ -115,7 +117,7 @@ const ContactSection = () => {
           {/* WhatsApp CTA */}
           <div className="mt-8 text-center">
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`}
+              href={whatsappUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass border border-primary/20 text-foreground font-semibold hover:border-primary/50 hover:scale-[1.03] active:scale-[0.97] transition-transform duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] animate-pulse-glow"
