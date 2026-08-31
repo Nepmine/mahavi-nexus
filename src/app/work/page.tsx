@@ -131,14 +131,15 @@ export default function WorkPage() {
                   "@type": "ListItem",
                   position: CASE_STUDIES.length + i + 1,
                   name: site.title,
-                  url: site.url,
+                  url: absoluteUrl(`/work/${site.slug}`),
                 })),
                 ...projectItems
-                  .filter((project) => !project.href)
+                  .filter((project) => project.slug !== "nikunja")
                   .map((project, i) => ({
                     "@type": "ListItem",
                     position: CASE_STUDIES.length + websiteItems.length + i + 1,
                     name: project.title,
+                    url: absoluteUrl(project.href),
                   })),
               ],
             },

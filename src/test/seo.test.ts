@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { SERVICES } from "@/content/services";
 import { SITE, absoluteUrl, whatsappUrl } from "@/content/site";
-import { CASE_STUDIES, projectItems, websiteItems } from "@/content/work";
+import { CASE_STUDIES, PROJECT_DETAILS, projectItems, websiteItems } from "@/content/work";
 import sitemap from "@/app/sitemap";
 
 /** What `metadata.title.template` in app/layout.tsx appends to every page. */
@@ -116,6 +116,43 @@ describe("portfolio links", () => {
   it("points external website cards at absolute https URLs", () => {
     for (const site of websiteItems) expect(site.url).toMatch(/^https:\/\//);
   });
+
+  it("gives every portfolio card an internal detail page", () => {
+    for (const site of websiteItems) {
+      expect(PROJECT_DETAILS.some((p) => p.slug === site.slug), site.slug).toBe(true);
+    }
+    for (const project of projectItems) {
+      const hasCaseStudy = CASE_STUDIES.some((c) => c.slug === project.slug);
+      const hasDetail = PROJECT_DETAILS.some((p) => p.slug === project.slug);
+      expect(hasCaseStudy || hasDetail, project.slug).toBe(true);
+      expect(project.href).toBe(`/work/${project.slug}`);
+    }
+  });
+});
+
+describe("project details", () => {
+  it("has unique slugs and real metadata", () => {
+    const slugs = PROJECT_DETAILS.map((p) => p.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    for (const detail of PROJECT_DETAILS) {
+      expect(`${detail.metaTitle}${TITLE_SUFFIX}`.length, detail.slug).toBeLessThanOrEqual(62);
+      expect(detail.metaDescription.length).toBeGreaterThan(70);
+      expect(detail.metaDescription.length).toBeLessThanOrEqual(170);
+      expect(detail.paragraphs.join(" ").split(/\s+/).length, detail.slug).toBeGreaterThan(60);
+    }
+  });
+
+  it("only claims services the site actually offers", () => {
+    const slugs = new Set(SERVICES.map((s) => s.slug));
+    for (const detail of PROJECT_DETAILS) {
+      for (const service of detail.services) expect(slugs.has(service), service).toBe(true);
+    }
+  });
+
+  it("does not collide with case-study slugs", () => {
+    const caseSlugs = new Set(CASE_STUDIES.map((c) => c.slug));
+    for (const detail of PROJECT_DETAILS) expect(caseSlugs.has(detail.slug)).toBe(false);
+  });
 });
 
 describe("sitemap", () => {
@@ -128,9 +165,10 @@ describe("sitemap", () => {
     }
   });
 
-  it("lists every service and case-study page", () => {
+  it("lists every service, case-study and project-detail page", () => {
     for (const service of SERVICES) expect(urls).toContain(absoluteUrl(`/services/${service.slug}`));
     for (const study of CASE_STUDIES) expect(urls).toContain(absoluteUrl(`/work/${study.slug}`));
+    for (const detail of PROJECT_DETAILS) expect(urls).toContain(absoluteUrl(`/work/${detail.slug}`));
   });
 
   it("only lists absolute URLs on the canonical origin", () => {

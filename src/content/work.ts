@@ -28,6 +28,8 @@ export interface DesignItem {
 }
 
 export interface WebsiteItem {
+  /** Internal detail page at /work/[slug]. */
+  slug: string;
   title: string;
   url: string;
   description: string;
@@ -35,11 +37,12 @@ export interface WebsiteItem {
 }
 
 export interface ProjectItem {
+  /** Internal detail page at /work/[slug]. */
+  slug: string;
   title: string;
   description: string;
   image: StaticImageData;
-  /** Present when the project has a case-study page of its own. */
-  href?: string;
+  href: string;
 }
 
 export const designItems: DesignItem[] = [
@@ -52,24 +55,28 @@ export const designItems: DesignItem[] = [
 
 export const websiteItems: WebsiteItem[] = [
   {
+    slug: "kristina-champion",
     title: "Kristina Champion",
     url: "https://kristinachampion.com/",
     description: "Personal portfolio & brand presence",
     thumbnail: websiteKristina,
   },
   {
+    slug: "ids-nepal-weekly",
     title: "IDS Nepal Weekly",
     url: "https://www.idsnepal.com/weeklyArticle",
     description: "News & article publishing platform",
     thumbnail: websiteIds,
   },
   {
+    slug: "to-the-left",
     title: "To The Left",
     url: "https://super-cranachan-fa4ff0.netlify.app/",
     description: "Modern landing page experience",
     thumbnail: websiteToTheLeft,
   },
   {
+    slug: "manual-is",
     title: "Manual.is",
     url: "https://www.manual.is/",
     description: "Health & wellness platform",
@@ -79,6 +86,7 @@ export const websiteItems: WebsiteItem[] = [
 
 export const projectItems: ProjectItem[] = [
   {
+    slug: "nikunja",
     title: "Nikunja Seva — Radhakundah Platform",
     description:
       "Research and publishing platform for an Australian client: gated scholarly papers, articles, galleries and video, with a full CMS and a 128-endpoint API behind it.",
@@ -86,18 +94,193 @@ export const projectItems: ProjectItem[] = [
     href: "/work/nikunja",
   },
   {
+    slug: "facebook-page-boost-bot",
     title: "Facebook Page Boost Bot",
     description:
       "Automated bot system for strategic Facebook page boosting & audience engagement growth.",
     image: projectFacebookBot,
+    href: "/work/facebook-page-boost-bot",
   },
   {
+    slug: "pdp-party-of-nepal",
     title: "PDP Party of Nepal",
     description:
       "Digital strategy and creative media collaboration for the PDP Party of Nepal's online presence.",
     image: projectPdpNepal,
+    href: "/work/pdp-party-of-nepal",
   },
 ];
+
+/* ────────────────────────────────────────────────────────────────────────────
+   Project detail pages — every website and project card gets a page of its
+   own at /work/[slug], even the ones too small for a full case study. Each
+   click stays on the site instead of bouncing straight to an external host,
+   which is better for time-on-site, internal linking and crawl depth than a
+   grid of outbound links ever is. The live link itself still lives on the
+   page, as a button rather than the whole card.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+export interface ProjectDetail {
+  slug: string;
+  title: string;
+  category: "Website" | "Automation" | "Digital Strategy";
+  image: StaticImageData;
+  /** External destination, when the work has one to send a visitor to. */
+  liveUrl?: string;
+  metaTitle: string;
+  metaDescription: string;
+  summary: string;
+  paragraphs: string[];
+  highlights: string[];
+  services: string[];
+}
+
+export const PROJECT_DETAILS: ProjectDetail[] = [
+  {
+    slug: "kristina-champion",
+    title: "Kristina Champion",
+    category: "Website",
+    image: websiteKristina,
+    liveUrl: "https://kristinachampion.com/",
+    metaTitle: "Kristina Champion — Personal Portfolio Website",
+    metaDescription:
+      "A personal portfolio site built by MaHaVi to give Kristina Champion a single, brand-consistent home for her work and story online.",
+    summary:
+      "A personal portfolio and brand home, built so a visitor lands somewhere that looks and reads like one considered idea rather than a stack of social profiles.",
+    paragraphs: [
+      "The brief was a single, self-contained site that could carry a personal brand: a clear introduction, a portfolio of work, and a way to get in touch, all under one address instead of scattered across social bios and link-in-bio tools.",
+      "We built the layout around fast page loads and clean typography, so the work on display is never competing with the site for attention. The result reads as considered rather than templated, and it's a page Kristina fully owns.",
+      "That ownership matters beyond looks: a personal site under a personal domain keeps the SEO value of every mention and link pointed at something Kristina controls, instead of splitting it across third-party profiles that can change their rules, their layout or their existence at any point.",
+      "It's also a page that ages well — the structure holds up as new work gets added, so growing the portfolio later is a content update rather than a redesign.",
+    ],
+    highlights: [
+      "One address instead of a link-in-bio page",
+      "Layout built to keep the portfolio, not the chrome, in focus",
+      "Fast-loading pages on both desktop and mobile",
+    ],
+    services: ["web-development", "branding-identity"],
+  },
+  {
+    slug: "ids-nepal-weekly",
+    title: "IDS Nepal Weekly",
+    category: "Website",
+    image: websiteIds,
+    liveUrl: "https://www.idsnepal.com/weeklyArticle",
+    metaTitle: "IDS Nepal Weekly — Article Publishing Platform",
+    metaDescription:
+      "A news and article publishing platform MaHaVi built for IDS Nepal, organised around weekly articles rather than a single undifferentiated feed.",
+    summary:
+      "A publishing platform for IDS Nepal's weekly articles — built to organise recurring content so readers can find this week's piece and last month's just as easily.",
+    paragraphs: [
+      "IDS Nepal needed somewhere to publish a running series of weekly articles that read well, load fast and stay easy to browse as the archive grows. A generic blog template wasn't the fit — the content is structured around a weekly cadence, and the site needed to reflect that.",
+      "We built a publishing layout that foregrounds the current week's article while keeping older pieces genuinely browsable, not buried behind endless pagination — a structure that also gives search engines a clear path into the archive rather than one long undifferentiated feed.",
+      "Every article gets its own clean, shareable page rather than living only inside a scrolling feed, which is what lets individual pieces get found, linked and read long after the week they were published in has passed.",
+      "That same structure is what makes the site sustainable to run week over week — publishing a new piece doesn't mean fighting the layout to fit it in.",
+    ],
+    highlights: [
+      "Built around a weekly publishing cadence, not a generic blog feed",
+      "Archive stays browsable as the article count grows",
+      "Clean reading layout tuned for article content",
+    ],
+    services: ["web-development", "digital-marketing-consulting"],
+  },
+  {
+    slug: "to-the-left",
+    title: "To The Left",
+    category: "Website",
+    image: websiteToTheLeft,
+    liveUrl: "https://super-cranachan-fa4ff0.netlify.app/",
+    metaTitle: "To The Left — Modern Landing Page",
+    metaDescription:
+      "A modern landing page experience designed and built by MaHaVi, focused on a clear first impression and a fast path to action.",
+    summary:
+      "A modern landing page experience, built to make a strong first impression and get a visitor to the point of the page without friction.",
+    paragraphs: [
+      "A landing page lives or dies in the first few seconds, so the priorities were speed, a clear visual hierarchy, and a message that lands before anyone has to scroll. That meant paring the page back to what actually earns its place above the fold.",
+      "The design leans on motion and layout rather than dense copy to hold attention, with every section building toward a single, obvious next step for the visitor to take.",
+      "Performance was treated as part of the design, not an afterthought bolted on at the end — a landing page that loads slowly loses the visitor it was built to convert before the message even renders.",
+      "Nothing on the page is there by default. Every section earned its place by moving the visitor a step closer to the action the page exists to get.",
+    ],
+    highlights: [
+      "Built for a fast first impression above the fold",
+      "Motion and layout used deliberately, not decoratively",
+      "One clear call to action carried through the page",
+    ],
+    services: ["web-development", "branding-identity"],
+  },
+  {
+    slug: "manual-is",
+    title: "Manual.is",
+    category: "Website",
+    image: websiteManual,
+    liveUrl: "https://www.manual.is/",
+    metaTitle: "Manual.is — Health & Wellness Platform",
+    metaDescription:
+      "A health and wellness platform MaHaVi designed and built for Manual.is, presenting its offering with a calm, trustworthy interface.",
+    summary:
+      "A health and wellness platform, designed so information that's genuinely sensitive to a visitor reads as calm and trustworthy rather than clinical.",
+    paragraphs: [
+      "Health and wellness content has to earn trust before it earns a click, so the design work went into a calm visual language, clear information hierarchy and copy that a visitor can scan without feeling sold to.",
+      "The build focused on making the offering easy to understand at a glance, with a clean, responsive interface that holds up whether someone lands from search, social or a direct link.",
+      "None of that works if the site itself feels slow or cluttered, so the same attention went into load times and page structure as into the visual design — the two aren't separable for a site whose whole job is to be believed.",
+      "The goal throughout was a site a visitor could trust within the first few seconds, well before they read a single line of the offering itself.",
+    ],
+    highlights: [
+      "Calm, trust-building visual language for a health & wellness audience",
+      "Content structured to be scannable rather than dense",
+      "Responsive across the range of devices real visitors arrive on",
+    ],
+    services: ["web-development", "branding-identity"],
+  },
+  {
+    slug: "facebook-page-boost-bot",
+    title: "Facebook Page Boost Bot",
+    category: "Automation",
+    image: projectFacebookBot,
+    metaTitle: "Facebook Page Boost Bot — Automation Project",
+    metaDescription:
+      "An automated system MaHaVi built to handle strategic Facebook page boosting and audience engagement growth without manual, day-to-day upkeep.",
+    summary:
+      "An automated system for strategic Facebook page boosting, built so audience growth keeps running without someone manually managing it day to day.",
+    paragraphs: [
+      "Growing a Facebook page's reach usually means someone repeating the same boosting and engagement tasks on a schedule. We replaced that manual routine with an automated system that handles the strategy consistently instead of whenever someone remembers to.",
+      "The bot runs the boosting logic on its own schedule, freeing the client's time for the content and community side of the page rather than the repetitive mechanics behind it.",
+      "It's the kind of project that doesn't need a public face to be worth building well: the value shows up entirely in the hours it gives back and the consistency it holds, not in a page a visitor ever lands on.",
+      "Automation like this is only worth having if it can be trusted to run unattended, so it was built to keep working quietly in the background rather than needing to be checked on.",
+    ],
+    highlights: [
+      "Replaces manual, repetitive boosting tasks with an automated schedule",
+      "Consistent execution instead of ad-hoc, memory-dependent upkeep",
+      "Frees the client's time for content and community, not mechanics",
+    ],
+    services: ["ai-integration", "social-media"],
+  },
+  {
+    slug: "pdp-party-of-nepal",
+    title: "PDP Party of Nepal",
+    category: "Digital Strategy",
+    image: projectPdpNepal,
+    metaTitle: "PDP Party of Nepal — Digital Strategy",
+    metaDescription:
+      "Digital strategy and creative media work MaHaVi delivered for the PDP Party of Nepal's online presence.",
+    summary:
+      "Digital strategy and creative media for the PDP Party of Nepal's online presence — planning and producing the material that carries a public-facing identity online.",
+    paragraphs: [
+      "A political party's online presence has to stay consistent across posts, visuals and messaging produced under real time pressure. We worked on the strategy behind that presence and produced the creative media it runs on.",
+      "The work covered planning the digital approach and producing the visual material that puts it into practice, aimed at a consistent, recognisable presence rather than one-off posts.",
+      "Keeping the strategy and the production under one roof meant the messaging and the visuals were built to match from the start, instead of a design team interpreting a plan it had no part in shaping.",
+      "That alignment is what a public-facing presence needs most: every piece of media traceable back to the same plan, rather than a set of one-off assets that happen to share a logo.",
+    ],
+    highlights: [
+      "Strategy and creative production handled together, not separately",
+      "Consistent visual identity across the party's online presence",
+      "Media produced to a public-facing standard under real deadlines",
+    ],
+    services: ["digital-marketing-consulting", "branding-identity"],
+  },
+];
+
+export const getProjectDetail = (slug: string) => PROJECT_DETAILS.find((p) => p.slug === slug);
 
 /* ────────────────────────────────────────────────────────────────────────────
    Case studies — projects substantial enough to carry a page of their own.

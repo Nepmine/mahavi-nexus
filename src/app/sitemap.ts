@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { SERVICES } from "@/content/services";
 import { SITE, absoluteUrl } from "@/content/site";
-import { CASE_STUDIES } from "@/content/work";
+import { CASE_STUDIES, PROJECT_DETAILS } from "@/content/work";
 
 /**
  * Generated from the route data rather than maintained by hand, so it cannot
@@ -28,6 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "yearly" as const,
       priority: 0.8,
+    })),
+    ...PROJECT_DETAILS.map((detail) => ({
+      url: absoluteUrl(`/work/${detail.slug}`),
+      lastModified,
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
     })),
   ];
 }

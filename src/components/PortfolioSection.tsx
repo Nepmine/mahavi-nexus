@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ArrowRight, ExternalLink, Eye, X } from "lucide-react";
 
 import { SITE, whatsappUrl } from "@/content/site";
@@ -32,7 +33,15 @@ const DesignModal = ({ item, onClose }: { item: DesignItem; onClose: () => void 
     return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
 
-  return (
+  /**
+   * Portalled to <body>: the grid this modal opens from sits inside an
+   * ancestor with a Tailwind transform utility (translate-y-0), and any
+   * transform — even a no-op one — makes that ancestor the containing block
+   * for `position: fixed` descendants. Left un-portalled, the "fixed"
+   * overlay was actually sizing itself to the portfolio section instead of
+   * the viewport.
+   */
+  return createPortal(
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-in"
       onClick={onClose}
@@ -81,7 +90,8 @@ const DesignModal = ({ item, onClose }: { item: DesignItem; onClose: () => void 
           </a>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 };
 
@@ -177,13 +187,11 @@ const VideoThumb = ({ src, poster }: { src: string; poster?: string }) => {
 /* ── Website Cards ── */
 export const WebsiteGrid = ({ items = websiteItems }: { items?: WebsiteItem[] }) => (
   <div className="grid md:grid-cols-2 gap-6">
-    {items.map(({ title, url, description, thumbnail }) => (
-      <a
-        key={title}
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="reveal group glass rounded-2xl overflow-hidden hover-lift cursor-pointer border border-border hover:border-primary/30 transition-all duration-300 relative"
+    {items.map(({ slug, title, description, thumbnail }) => (
+      <Link
+        key={slug}
+        href={`/work/${slug}`}
+        className="reveal group glass rounded-2xl overflow-hidden hover-lift cursor-pointer border border-border hover:border-primary/30 transition-all duration-300 relative block"
       >
         {/* Thumbnail */}
         <div className="relative overflow-hidden aspect-video">
@@ -196,7 +204,7 @@ export const WebsiteGrid = ({ items = websiteItems }: { items?: WebsiteItem[] })
           />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 text-xs font-semibold text-background bg-primary/80 backdrop-blur-sm px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Live Site <ExternalLink size={12} />
+            View Project <ArrowRight size={12} />
           </span>
         </div>
         {/* light sweep */}
@@ -207,7 +215,7 @@ export const WebsiteGrid = ({ items = websiteItems }: { items?: WebsiteItem[] })
           </h3>
           <p className="text-muted-foreground text-sm">{description}</p>
         </div>
-      </a>
+      </Link>
     ))}
   </div>
 );
@@ -228,32 +236,24 @@ const ProjectCardInner = ({ title, description, image, href }: ProjectItem) => (
     <div className="p-5 transition-transform duration-300 group-hover:-translate-y-1">
       <h3 className="font-heading text-lg font-bold text-foreground mb-2">{title}</h3>
       <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-      {href && (
-        <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-          Read the case study
-          <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-        </span>
-      )}
+      <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+        {href === "/work/nikunja" ? "Read the case study" : "View the project"}
+        <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+      </span>
     </div>
   </>
 );
 
 const projectCardClass =
-  "reveal group glass rounded-2xl overflow-hidden border border-border hover:border-accent/40 transition-all duration-300 relative";
+  "reveal group glass rounded-2xl overflow-hidden border border-border hover:border-accent/40 transition-all duration-300 relative block";
 
 export const ProjectGrid = ({ items = projectItems }: { items?: ProjectItem[] }) => (
   <div className="grid md:grid-cols-2 gap-6">
-    {items.map((item) =>
-      item.href ? (
-        <Link key={item.title} href={item.href} className={`${projectCardClass} block`}>
-          <ProjectCardInner {...item} />
-        </Link>
-      ) : (
-        <div key={item.title} className={projectCardClass}>
-          <ProjectCardInner {...item} />
-        </div>
-      ),
-    )}
+    {items.map((item) => (
+      <Link key={item.slug} href={item.href} className={projectCardClass}>
+        <ProjectCardInner {...item} />
+      </Link>
+    ))}
   </div>
 );
 
