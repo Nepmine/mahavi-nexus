@@ -78,9 +78,11 @@ export const metadata: Metadata = {
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.shortDescription,
   },
-  // Icons and the manifest are picked up from app/icon.svg, app/apple-icon.png,
-  // app/favicon.ico and app/manifest.ts — declaring them here as well would
-  // emit each link tag twice.
+  icons: {
+    icon: "/mahavi_logo.png",
+    shortcut: "/mahavi_logo.png",
+    apple: "/mahavi_logo.png",
+  },
   formatDetection: { telephone: false, address: false, email: false },
 };
 
