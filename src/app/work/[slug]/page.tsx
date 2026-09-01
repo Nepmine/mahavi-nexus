@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 
 import JsonLd from "@/components/JsonLd";
 import PageShell from "@/components/PageShell";
@@ -102,6 +102,19 @@ function CaseStudyView({ study }: { study: (typeof CASE_STUDIES)[number] }) {
               className="object-cover"
             />
           </div>
+          {study.liveUrl && (
+            <div className="mt-6 reveal">
+              <a
+                href={study.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 gradient-tech rounded-full px-8 py-3.5 text-primary-foreground font-semibold hover:opacity-90 hover:scale-[1.03] transition-transform duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] glow-primary"
+              >
+                Visit the live platform
+                <ExternalLink size={16} />
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
@@ -233,6 +246,7 @@ function CaseStudyView({ study }: { study: (typeof CASE_STUDIES)[number] }) {
               "@type": "CreativeWork",
               name: study.title,
               creator: orgRef,
+              ...(study.liveUrl ? { sameAs: [study.liveUrl] } : {}),
             },
             mentions: [{ "@type": "Organization", name: study.client }],
           },
@@ -310,6 +324,18 @@ function ProjectDetailView({ detail }: { detail: (typeof PROJECT_DETAILS)[number
                 Visit the live site
                 <ExternalLink size={16} />
               </a>
+            </div>
+          )}
+
+          {detail.category === "Website" && (
+            <div className="max-w-3xl mx-auto mt-6 reveal">
+              <Link
+                href="/work"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+              >
+                <ArrowLeft size={14} />
+                Back to work
+              </Link>
             </div>
           )}
         </div>

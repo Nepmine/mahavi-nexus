@@ -302,6 +302,8 @@ export interface CaseStudy {
   year: string;
   role: string;
   image: StaticImageData;
+  /** External destination, when the platform has a public URL to send a visitor to. */
+  liveUrl?: string;
   metaTitle: string;
   metaDescription: string;
   summary: string;
@@ -332,7 +334,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       { label: "Client", value: "Nikunja Seva Pty Ltd" },
       { label: "Location", value: "Australia" },
       { label: "Engagement", value: "Full-stack build, design to deployment" },
-      { label: "Delivered by", value: "Mahavi Pvt. Ltd." },
+      { label: "Delivered by", value: "MaHaVi — mahavi.tech" },
     ],
     metrics: [
       { value: "128", label: "Documented API endpoints" },

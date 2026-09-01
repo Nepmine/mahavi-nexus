@@ -95,7 +95,7 @@ const Footer = () => (
 
       <div className="text-center mt-8">
         <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} {SITE.legalName} All rights reserved.
+          © {new Date().getFullYear()} {SITE.legalName} ({SITE.url.replace("https://", "")}). All rights reserved.
         </p>
       </div>
     </div>
