@@ -10,7 +10,7 @@ export const SITE = {
   url: "https://mahavi.tech",
   tagline: "Where Technology Meets Creativity",
   shortDescription:
-    "MaHaVi is a software development and digital design company: web and app development, custom software, UI/UX design and AI integration for brands worldwide.",
+    "MaHaVi is a software development and digital design company based in Kathmandu, Nepal: web and app development, custom software, UI/UX design and AI integration, priced to compete for clients worldwide.",
   founded: "2024",
   email: "contactmahavi@gmail.com",
   /** wa.me expects the number in international form with no punctuation. */

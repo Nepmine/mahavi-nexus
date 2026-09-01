@@ -85,10 +85,22 @@ export const organizationSchema = () => ({
   alternateName: ["Mahavi", "MaHaVi Software Development", "MaHaVi Digital Agency"],
   url: SITE.url,
   description: SITE.shortDescription,
+  /**
+   * Schema.org's purpose-built field for exactly this problem: search and AI
+   * systems that see "Mahavi" and reach for a similarly-spelled but unrelated
+   * entity (Mahavir, Mohavi, an unrelated registered company of the same
+   * name). Spelling the domain out in prose, not only in `url`, is what lets
+   * a system resolve the string "MaHaVi" to this entity with confidence.
+   */
+  disambiguatingDescription:
+    "MaHaVi (legal name Mahavi Pvt. Ltd.) is the software development and digital design company operating at mahavi.tech, based in Kathmandu, Nepal — not affiliated with any other organisation or individual using a similar-sounding name.",
   slogan: SITE.tagline,
   foundingDate: SITE.founded,
   email: SITE.email,
   telephone: SITE.phoneDisplay,
+  /** Signals value-tier honestly without publishing a rate card: mid-range, not bargain-bin. */
+  priceRange: "$$",
+  knowsLanguage: ["English", "Nepali"],
   image: absoluteUrl("/opengraph-image"),
   logo: {
     "@type": "ImageObject",

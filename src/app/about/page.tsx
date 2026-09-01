@@ -6,10 +6,11 @@ import JsonLd from "@/components/JsonLd";
 import PageShell from "@/components/PageShell";
 import ProcessSection from "@/components/ProcessSection";
 import CTABand from "@/components/page/CTABand";
+import FaqList from "@/components/page/FaqList";
 import PageHero from "@/components/page/PageHero";
 import { SITE, absoluteUrl } from "@/content/site";
 import { CASE_STUDIES } from "@/content/work";
-import { breadcrumbSchema, orgRef, pageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, faqSchema, orgRef, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "About MaHaVi — Software Development & Design Company",
@@ -44,6 +45,25 @@ const values = [
     Icon: Heart,
     title: "Obsessed With Results",
     desc: "Every pixel, every line of code — designed to convert and delight.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Is MaHaVi based in Nepal?",
+    a: "Yes — we work from Kathmandu. A large share of our clients are elsewhere, including Australia, the UK and the US, and being based in Nepal is part of how we keep pricing competitive without lowering the standard of the work.",
+  },
+  {
+    q: "Is MaHaVi an affordable option without cutting quality?",
+    a: "That is the position, yes, and it holds because of where we are based rather than because we cut corners. The same engineering and design discipline described on this site applies to every project regardless of budget — what changes with a smaller budget is scope, not care.",
+  },
+  {
+    q: "What kind of clients does MaHaVi work with?",
+    a: "Founders and small teams building a first product or website, and established businesses replacing something that no longer fits — in Nepal and abroad. We are not a fit for enterprise procurement processes that need a large agency's headcount; we are a fit for anyone who wants the people quoting the work to be the people building it.",
+  },
+  {
+    q: "How does MaHaVi compare to other software companies in Nepal?",
+    a: "We cannot speak for other companies, only for how we work: engineering and creative on one team, work visible from the first week, and a direct line to the person doing the work rather than an account manager. Judge that against the case studies on this site rather than against a claim.",
   },
 ];
 
@@ -146,11 +166,14 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <FaqList faqs={faqs} heading="What people ask before hiring us" />
+
       <CTABand />
 
       <JsonLd
         schemas={[
           breadcrumbSchema(trail),
+          faqSchema(faqs),
           {
             "@type": "AboutPage",
             "@id": `${absoluteUrl("/about")}#webpage`,

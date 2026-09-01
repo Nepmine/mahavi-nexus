@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   ...pageMetadata({
     title: `${SITE.name} — Software Development & Digital Design Company`,
     description:
-      "MaHaVi is a software development and digital design company — websites, apps, custom software and AI-driven products, delivered from Nepal for clients worldwide.",
+      "MaHaVi is a Nepal-based software development and digital design company — websites, apps, custom software and AI products, priced to compete, for clients worldwide.",
     path: "/",
   }),
   // The homepage owns the bare domain; the layout's template would otherwise
