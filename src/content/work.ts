@@ -325,6 +325,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     year: "2026",
     role: "Full-stack design, engineering and delivery",
     image: projectNikunja,
+    liveUrl: "https://radhakundah.com/",
     metaTitle: "Nikunja Seva Case Study — Radhakundah Platform",
     metaDescription:
       "How MaHaVi built Radhakundah for Nikunja Seva Pty Ltd, Australia — a research and publishing platform with gated papers, full-text PDF search and a 128-endpoint API.",

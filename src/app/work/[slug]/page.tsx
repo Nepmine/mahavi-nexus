@@ -275,7 +275,17 @@ function ProjectDetailView({ detail }: { detail: (typeof PROJECT_DETAILS)[number
 
   return (
     <PageShell>
-      <PageHero eyebrow={detail.category} trail={trail} title={detail.title} lead={detail.summary} />
+      <PageHero eyebrow={detail.category} trail={trail} title={detail.title} lead={detail.summary}>
+        {detail.category === "Website" && (
+          <Link
+            href="/work"
+            className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+          >
+            <ArrowLeft size={14} />
+            Back to work
+          </Link>
+        )}
+      </PageHero>
 
       {/* Hero artwork */}
       <section className="pb-4">
@@ -324,18 +334,6 @@ function ProjectDetailView({ detail }: { detail: (typeof PROJECT_DETAILS)[number
                 Visit the live site
                 <ExternalLink size={16} />
               </a>
-            </div>
-          )}
-
-          {detail.category === "Website" && (
-            <div className="max-w-3xl mx-auto mt-6 reveal">
-              <Link
-                href="/work"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
-              >
-                <ArrowLeft size={14} />
-                Back to work
-              </Link>
             </div>
           )}
         </div>
