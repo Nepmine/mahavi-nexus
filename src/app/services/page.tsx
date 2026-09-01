@@ -11,9 +11,9 @@ import { absoluteUrl } from "@/content/site";
 import { breadcrumbSchema, orgRef, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Services — Web, Apps, AI, Branding & Marketing",
+  title: "Services — Software, Apps, AI & Design",
   description:
-    "Everything MaHaVi does: web and app development, AI integration, SaaS platforms, brand identity, video production, social media and SEO consulting.",
+    "Everything MaHaVi does: custom software development, web and app development, UI/UX and brand design, AI integration, video production and SEO consulting.",
   path: "/services",
 });
 
@@ -104,7 +104,7 @@ export default function ServicesPage() {
             url: absoluteUrl("/services"),
             name: "Services",
             description:
-              "Web and app development, AI integration, SaaS platforms, brand identity, video production, social media and SEO consulting.",
+              "Custom software development, web and app development, UI/UX and brand design, AI integration, video production and SEO consulting.",
             about: orgRef,
             mainEntity: {
               "@type": "ItemList",

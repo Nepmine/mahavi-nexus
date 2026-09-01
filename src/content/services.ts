@@ -41,26 +41,27 @@ export const SERVICES: Service[] = [
     desc: "Modern, fast, scalable web applications",
     Icon: Code2,
     side: "tech",
-    metaTitle: "Web Development Services — Fast, SEO-Ready Sites",
+    metaTitle: "Web Development & UI/UX Design Services",
     metaDescription:
-      "Custom web development with React, Next.js and TypeScript. Server-rendered, Core Web Vitals-tuned sites and web applications built to rank and to convert.",
-    heading: "Web Development",
+      "Custom web development and UI/UX design with React, Next.js and TypeScript — Core Web Vitals-tuned sites built to rank and convert, for Nepal and worldwide clients.",
+    heading: "Web Development & UI/UX Design",
     intro:
-      "Websites and web applications that load fast, read well to search engines, and keep working as the business behind them grows.",
+      "Websites and web applications — designed with real UI/UX craft and engineered to load fast, read well to search engines, and keep working as the business behind them grows.",
     body: [
       "Most sites are slow because of what they ship, not what they say. We build on React and Next.js with server rendering by default, so the page arrives as HTML rather than as a bundle a browser has to assemble first. That is the difference between a crawler indexing your content on the first pass and waiting for a render queue that may never come.",
+      "The interface is not an afterthought bolted on once the backend works. We design the UI/UX alongside the build — wireframes and a component library in Figma before a line of production code, so the visual system and the codebase describe the same thing instead of drifting apart.",
       "Everything is typed end to end with TypeScript, so a change to a data shape breaks the build rather than a customer's checkout. Images are served in modern formats at the size the layout actually needs. Fonts are self-hosted so there is no third-party round trip before the first word appears.",
       "We work in the open: a staging URL from the first week, deploy previews on every change, and analytics wired in before launch rather than after. You see the site take shape instead of receiving it finished.",
     ],
     deliverables: [
-      "Design system and responsive layouts down to 320px",
+      "UI/UX design system and responsive layouts down to 320px",
       "Server-rendered pages with per-route metadata and canonicals",
       "Structured data, sitemap and robots configured for indexing",
       "Core Web Vitals budget agreed up front and measured at launch",
       "CMS or content model where the site needs to be edited without us",
       "Analytics, search-console verification and a launch checklist",
     ],
-    stack: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Vercel", "Azure"],
+    stack: ["Figma", "React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Vercel", "Azure"],
     faqs: [
       {
         q: "How long does a website take to build?",
@@ -69,6 +70,10 @@ export const SERVICES: Service[] = [
       {
         q: "Will the site be good for SEO?",
         a: "It is built that way rather than fixed afterwards. Pages are server-rendered so crawlers get real HTML, every route carries its own title, description and canonical, structured data is emitted per content type, and the sitemap is generated from the site's own routes so it cannot drift out of date.",
+      },
+      {
+        q: "Do you handle UI/UX design as part of the build?",
+        a: "Yes — design and development happen on the same team here. We wireframe and design the interface in Figma, test it against real content, and then build directly from that system, so what ships matches what was designed rather than a rough approximation of it.",
       },
       {
         q: "Can you rebuild an existing site without losing rankings?",
@@ -171,14 +176,14 @@ export const SERVICES: Service[] = [
     desc: "End-to-end product development",
     Icon: Monitor,
     side: "tech",
-    metaTitle: "SaaS Product Development, End to End",
+    metaTitle: "Custom Software Development & SaaS Platforms",
     metaDescription:
-      "End-to-end SaaS development: multi-tenant architecture, roles and permissions, an admin console, and an API built to carry the next module without a rewrite.",
-    heading: "SaaS Platforms",
+      "Custom software development and SaaS platforms: multi-tenant architecture, roles, an admin console, and an API built to scale for Nepal and global clients.",
+    heading: "Custom Software Development & SaaS Platforms",
     intro:
-      "Multi-tenant products built end to end — the customer-facing app, the staff console behind it, and the API that will still make sense to the next developer.",
+      "Custom software development for multi-tenant products, built end to end — the customer-facing app, the staff console behind it, and the API that will still make sense to the next developer.",
     body: [
-      "A SaaS platform is three products wearing one name: what a customer sees, what your team uses to run it, and the API holding them together. Skip the second and your team ends up in the database. Skip the third and the mobile app you commission next year turns into a rewrite.",
+      "Custom software development, done properly, is rarely one app. A SaaS platform is three products wearing one name: what a customer sees, what your team uses to run it, and the API holding them together. Skip the second and your team ends up in the database. Skip the third and the mobile app you commission next year turns into a rewrite.",
       "We start with the tenancy model, because it is the one decision that is expensive to change later — how accounts, organisations, branches and roles relate, and what a given role may reach. Permissions are enforced at the API, not hidden in the interface, so a screen a user should not see is also an endpoint they cannot call.",
       "Every endpoint is documented as it is written, with one response envelope and a fixed set of error codes, published as a browsable reference. Audit logging, health checks and automated backups go in from the start; they are the things nobody asks for until the day they are the only thing that matters.",
     ],
@@ -192,6 +197,10 @@ export const SERVICES: Service[] = [
     ],
     stack: ["Next.js", "React", "TypeScript", "Fastify", "Prisma", "PostgreSQL", "Azure", "Vercel"],
     faqs: [
+      {
+        q: "Is this the same as custom software development?",
+        a: "Yes — a multi-tenant SaaS platform is one shape custom software takes. If what you need does not fit an off-the-shelf product, it is the same engineering discipline: tenancy, permissions, an API and an admin console built around what your business actually does.",
+      },
       {
         q: "Can you take over an existing platform?",
         a: "Often, yes. We start with a read-only audit — schema, endpoints, auth, deployment — and come back with what is sound, what is load-bearing and fragile, and what we would change first. You get that assessment whether or not you continue with us.",

@@ -10,7 +10,7 @@ export const SITE = {
   url: "https://mahavi.tech",
   tagline: "Where Technology Meets Creativity",
   shortDescription:
-    "MaHaVi is a digital agency blending engineering and creative: web and app development, AI, branding, video and digital marketing for modern brands.",
+    "MaHaVi is a software development and digital design company: web and app development, custom software, UI/UX design and AI integration for brands worldwide.",
   founded: "2024",
   email: "contactmahavi@gmail.com",
   /** wa.me expects the number in international form with no punctuation. */

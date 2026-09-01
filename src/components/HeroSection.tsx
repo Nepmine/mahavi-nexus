@@ -16,7 +16,7 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8 opacity-0 animate-hero-text-reveal" style={{ animationDelay: "0.1s" }}>
             <Sparkles size={16} className="text-primary" />
-            <span className="text-sm font-medium text-muted-foreground">Innovation-Driven Digital Agency</span>
+            <span className="text-sm font-medium text-muted-foreground">Software Development &amp; Digital Design Company</span>
           </div>
 
           <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.05] mb-6 opacity-0 animate-hero-text-reveal" style={{ animationDelay: "0.2s" }}>
@@ -28,7 +28,7 @@ const HeroSection = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 opacity-0 animate-hero-text-reveal" style={{ animationDelay: "0.4s" }}>
-            We build digital powerhouses for modern brands — blending cutting-edge tech with stunning creative to deliver experiences that convert.
+            We design and build software, websites, apps and AI-driven products for ambitious brands worldwide — engineering that scales and creative that converts.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-hero-text-reveal" style={{ animationDelay: "0.6s" }}>

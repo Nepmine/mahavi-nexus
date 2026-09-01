@@ -29,7 +29,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — Digital Agency for Web, Apps & Branding`,
+    default: `${SITE.name} — Software Development & Digital Design Company`,
     // Every page below supplies only its own name; the brand is appended here.
     template: `%s | ${SITE.name}`,
   },
@@ -41,12 +41,15 @@ export const metadata: Metadata = {
   category: "technology",
   alternates: { canonical: SITE.url },
   keywords: [
-    "digital agency",
+    "software development company",
+    "custom software development",
     "web development",
-    "web development Nepal",
+    "web development company Nepal",
+    "UI/UX design",
     "app development",
     "AI integration",
     "SaaS development",
+    "digital agency",
     "branding agency",
     "video production",
     "social media marketing",

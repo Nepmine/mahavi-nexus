@@ -12,10 +12,10 @@ import { CASE_STUDIES } from "@/content/work";
 import { breadcrumbSchema, orgRef, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "About MaHaVi — A Digital Agency in Kathmandu",
+  title: "About MaHaVi — Software Development & Design Company",
   absoluteTitle: true,
   description:
-    "MaHaVi is a digital agency built on two disciplines: engineering and creative. Who we are, how we work, and why clients in Nepal and Australia hire us.",
+    "MaHaVi is a software development and design company built on two disciplines: engineering and creative — and why clients in Nepal and Australia hire us.",
   path: "/about",
 });
 
@@ -59,7 +59,7 @@ export default function AboutPage() {
             <span className="gradient-text-creative">creativity</span>
           </>
         }
-        lead={`${SITE.legalName} is a digital agency built around a simple observation: the engineering shop cannot make it beautiful, and the creative studio cannot make it work. So we do both, under one roof, with one team accountable for the result.`}
+        lead={`${SITE.legalName} is a software development and digital design company built around a simple observation: the engineering shop cannot make it beautiful, and the creative studio cannot make it work. So we do both, under one roof, with one team accountable for the result.`}
       />
 
       <section className="py-20">
@@ -157,7 +157,7 @@ export default function AboutPage() {
             url: absoluteUrl("/about"),
             name: "About MaHaVi",
             description:
-              "MaHaVi is a digital agency built on two disciplines: engineering and creative. Who we are and how we work.",
+              "MaHaVi is a software development and digital design company built on two disciplines: engineering and creative. Who we are and how we work.",
             mainEntity: orgRef,
             isPartOf: { "@id": `${absoluteUrl("/")}#website` },
           },

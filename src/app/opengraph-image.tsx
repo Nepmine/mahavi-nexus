@@ -8,8 +8,8 @@ export const contentType = OG_CONTENT_TYPE;
 /** The fallback card for every route that does not generate its own. */
 export default function OpengraphImage() {
   return ogCard({
-    eyebrow: "Digital Agency",
+    eyebrow: "Software Development & Design",
     title: "Where Technology Meets Creativity",
-    subtitle: "Web & app development, AI, SaaS platforms, branding, video and digital marketing.",
+    subtitle: "Custom software, web & app development, UI/UX design and AI — for Nepal and clients worldwide.",
   });
 }

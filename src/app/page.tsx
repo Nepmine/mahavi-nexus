@@ -20,22 +20,22 @@ import { pageMetadata, orgRef } from "@/lib/seo";
 
 export const metadata: Metadata = {
   ...pageMetadata({
-    title: `${SITE.name} — Digital Agency for Web, Apps & Branding`,
+    title: `${SITE.name} — Software Development & Digital Design Company`,
     description:
-      "MaHaVi is a digital agency where technology meets creativity — web and app development, AI integration, SaaS platforms, branding, video and marketing.",
+      "MaHaVi is a software development and digital design company — websites, apps, custom software and AI-driven products, delivered from Nepal for clients worldwide.",
     path: "/",
   }),
   // The homepage owns the bare domain; the layout's template would otherwise
   // append the brand a second time.
   title: {
-    absolute: `${SITE.name} — Digital Agency for Web, Apps & Branding`,
+    absolute: `${SITE.name} — Software Development & Digital Design Company`,
   },
 };
 
 /** The service catalogue, so the homepage itself declares what is on offer. */
 const offerCatalog = {
   "@type": "OfferCatalog",
-  name: "Digital agency services",
+  name: "Software development and digital design services",
   itemListElement: SERVICES.map((service) => ({
     "@type": "Offer",
     itemOffered: {
